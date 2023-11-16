@@ -5,14 +5,15 @@ const complaintSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "Client"
     },
-    contactNumber: { type: String, required: true},
-    age: { type: String },
-    gender: { type: String },
     disability: { type: String },
-    briefOfComplaint: { type: String },
-    writtenBy: { type: String },
+    mode: { type: String },
+    brief: { type: String },
+    author: { type: String },
     clientEndorsed: { type: Boolean },
-    csuOfficerEndorsed: { type: Boolean }
+    csuOfficerEndorsed: { type: Boolean },
+    pending: { type: Boolean },
+    resolved: { type: Boolean },
+    archived: { type: Boolean }
 })
 
 complaintSchema.set("toJSON", {
