@@ -13,6 +13,12 @@ const clientSchema = new mongoose.Schema({
     timeOut: { type: String }
 })
 
-const Client = mongoose.model("Client", clientSchema)
+clientSchema.set("toJSON", {
+    transform: (document, returnedObject) => {
+        returnedObject.id = returnedObject._id.toString()
+        delete returnedObject._id
+        delete returnedObject.__v
+    }
+})
 
-module.exports = Client
+module.exports = mongoose.model("Client", clientSchema)
