@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const enquirySchema = new mongoose.Schema({
+    id: Number,
     client: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Client"
@@ -11,6 +12,7 @@ const enquirySchema = new mongoose.Schema({
     author: { type: String },
     clientEndorsed: { type: Boolean },
     csuOfficerEndorsed: { type: Boolean },
+    dueDate: Date,
     pending: { type: Boolean },
     resolved: { type: Boolean },
     archived:{ type: Boolean }
