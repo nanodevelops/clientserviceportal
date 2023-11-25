@@ -1,0 +1,38 @@
+@import "../../sass/fonts.scss";
+@import "../../sass/colors.scss";
+
+.main-nav {
+    position: fixed;
+    left: 18rem;
+    right: 0;
+    background-color: $color-white;
+    z-index: 1000;
+}
+
+.navbar {
+    padding: 1rem;
+    border-bottom: 1px solid $color-green; // Add your preferred border color
+}
+
+a.nav-link {
+    color: $color-green;
+}
+.search-form {
+    position: relative;
+}
+.search-input {
+    border: none;
+    width: 100%;
+}
+.search-button {
+    border: none;
+    border-radius: 0%;
+    background: $color-green;
+    outline: none;
+    color: $color-white;
+    transition: background-color 0.3s, color 0.3s;
+}
+.search-button:hover {
+    background-color: rgba(40, 167, 69, 0.8); /* Green background with opacity */
+    color: #fff; /* White text on hover */
+}

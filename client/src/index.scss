@@ -1,1 +1,33 @@
+@import "./sass/fonts.scss";
+@import "./sass/colors.scss";
 
+// MAIN CSS
+body{
+    padding: 0;
+    margin: 0;
+    font-family: $body-font;
+    height: 100vh;
+    overflow: hidden;
+}
+#root{
+    display: flex;
+    height: 100%;
+}
+.theme-btn {
+    a{
+        background: $color-green;
+        color: $color-white;
+        padding: 5px 10px;
+        text-decoration: none;
+        border: 1px solid transparent;
+        font-size: 14px;
+        font-weight: 500;
+        display: inline-block;
+        transition: .3s;
+    }
+    &:hover{
+        background: $color-yellow;
+        color: $color-green;
+        border: 1px solid $color-black;
+    }
+}
