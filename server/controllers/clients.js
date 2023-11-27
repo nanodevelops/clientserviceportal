@@ -27,7 +27,8 @@ clientRouter.post("/", async(request, response) => {
     const client = new Client({
         firstName: body.firstName,
         lastName: body.lastName,
-        contactNumber: body.contactNumber,
+        contact: body.contact,
+        email: body.email,
         address: body.address,
         gender: body.gender,
         age: body.age,
