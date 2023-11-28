@@ -6,7 +6,7 @@ import "./Navbar.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  
+    const navigate = useNavigate()
     const navbarMenu = [
         {
             name: "Client Services",
@@ -96,7 +96,7 @@ const Navbar = () => {
         }
     }
 
-    const navigate = useNavigate()
+    
 
     return (
         <div className="main-nav">
@@ -140,7 +140,7 @@ const Navbar = () => {
                                                             <NavLink 
                                                                 className="dropdown-item"
                                                                 key={subindex}
-                                                                to={`/${navItem.path}${typeof item.path === 'string' ? '/' + item.name.toLowerCase() : '/' + item.path.toLowerCase()}`}
+                                                                to={`/${navItem.path}${typeof item.path === 'string' ? '/' + item.name.replace(/\s+/g, '').toLowerCase() : item.path}`}
                                                                 onClick={handleAddNewClientClick(item.path)}
                                                             >
                                                                 {typeof item === 'string' ? item : item.name}
@@ -149,7 +149,7 @@ const Navbar = () => {
                                                     </div>
                                                 </>
                                             ): (
-                                                <NavLink className="nav-link" to={navItem.path} activeClassName="active" aria-current={index === 0 ? "page" : undefined}>
+                                                <NavLink className="nav-link" to={navItem.path} aria-current={index === 0 ? "page" : undefined}>
                                                     {navItem.name}
                                                 </NavLink>
                                             )}

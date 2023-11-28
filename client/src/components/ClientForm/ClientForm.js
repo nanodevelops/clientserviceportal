@@ -68,8 +68,8 @@ const ClientForm = () => {
                         <input 
                             type="text" required 
                             className="form-control" 
-                            value={firstName} 
-                            onChange={(e) => setFirstName(e.target.value)} 
+                            value={lastName} 
+                            onChange={(e) => setLastName(e.target.value)} 
                         />
                     </div>
                 </form>
