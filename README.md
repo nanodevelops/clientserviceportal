@@ -5,11 +5,8 @@ The client service portal is an all-in-one application that stores client inform
 - [Tech Stack](#tech-stack)
 - [Project Overview](#project-overview)
 - [Features](#features)
-- [Usage](#usage)
-- [Installation](#installation)
-- [Contributing](#contributing)
-- [License](#license
-- 
+- [License](#license)
+  
 ## Tech Stack
 ### Frontend
 - [React](https://reactjs.org/)
@@ -43,3 +40,5 @@ The portal is being develop to support these key features;
 - **Notifications:** Real-time notifications for new complaints and inquiries.
 - **...
 
+## Licence
+**MIT License**
