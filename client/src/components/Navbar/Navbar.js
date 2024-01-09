@@ -3,100 +3,118 @@ import SearchIcon from "@mui/icons-material/Search"
 import React from "react";
 import "./Navbar.scss";
 
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
-    const navigate = useNavigate()
+
     const navbarMenu = [
         {
-            name: "Client Services",
-            path: "/clientservices",
-            dropdown: true,
-            dropdownItems: [
+            id: 1,
+            title: "Clients",
+            path: "/clients",
+            cName: 'nav-item',
+            children: [
                 {
-                    name: "Add New Client",
-                    path: "/addnewclient",
-                    dropdown: false
+                    id: 1,
+                    title: "Add New",
+                    path: "/clients/addnew",
+                    cName: "submenu-item"
                 },
                 {
-                    name: "Client List",
-                    path: "/clientlist",
-                    dropdown: false
+                    id: 2,
+                    title: "View All",
+                    path: "/clients/view-all",
+                    cName: "submenu-item"
                 }
             ]
         },
         {
-            name: "Complaints",
+            id: 2,
+            title: "Complaints",
             path: "/complaints",
-            dropdown: true,
-            dropdownItems: [
+            cName: 'nav-item',
+            children: [
                 {
-                    name: "Add New Complaint",
-                    path: "/addnewcomplaint",
-                    dropdown: false
+                    id: 1,
+                    title: "Add New",
+                    path: "/complaints/addnew",
+                    cName: "submenu-item"
                 },
                 {
-                    name: "Complaint List",
-                    path: "/complaintlist",
-                    dropdown: false
+                    id: 2,
+                    title: "View All",
+                    path: "/complaints/view-all",
+                    cName: "submenu-item"
                 }
             ]
         },
         {
-            name: "Enquiries",
+            id: 3,
+            title: "Enquiries",
             path: "/enquiries",
-            dropdown: true,
-            dropdownItems: [
+            cName: 'nav-item',
+            children: [
                 {
-                    name: "Add New Enquiry",
-                    path: "/addnewenquiry",
-                    dropdown: false
+                    id: 1,
+                    title: "Add New",
+                    path: "/enquiries/addnew",
+                    cName: "submenu-item"
                 },
                 {
-                    name: "Enquiry List",
-                    path: "/enquirylist",
-                    dropdown: false
+                    id: 2,
+                    title: "View All",
+                    path: "/enquiries/view-all",
+                    cName: "submenu-item"
                 }
             ]
         },
         {
-            name: "Reports",
+            id: 4,
+            title: "Reports",
             path: "/reports",
-            dropdown: true,
-            dropdownItems: [
+            children: [
                 {
-                    name: "Clients Report",
-                    path: "/clientsreport",
-                    dropdown: false
+                    id: 1,
+                    title: "Clients Report",
+                    path: "/reports/clients-report",
+                    cName: 'submenu-item'
                 },
                 {
-                    name: "Complaints Report",
-                    path: "/complaintsreport",
-                    dropdown: false
+                    id: 2,
+                    title: "Complaints Report",
+                    path: "/reports/complaints-report",
+                    cName: 'submenu-item'
                 },
                 {
-                    name: "Enquiries Report",
-                    path: "/enquiriesreport",
-                    dropdown: false
+                    id: 3,
+                    title: "Enquiries Report",
+                    path: "/reports/enquiries-report",
+                    cName: 'submenu-item'
                 }
             ]
         },
         {
-            name: "Archive",
+            id: 5,
+            title: "Archive",
             path: "/archive",
-            dropdown: false
+            cName: 'nav-item'
         },
     ]
 
-    const handleAddNewClientClick = (path) => {
-        return () => {
-            if(path === "/addnewclient"){
-                navigate("/addnewclient")
-            }
-        }
+    const renderMenu = (menuItems) => {
+        return menuItems.map((menuItem) => (
+            <li key={menuItem.id} className={menuItem.cName}>
+                <NavLink to={menuItem.path} className="nav-link">
+                    {menuItem.title}
+                </NavLink>
+                {menuItem.children && (
+                    <ul className="submenu">
+                        {renderMenu(menuItem.children)}
+                    </ul>
+                )}
+            </li>
+        ))
     }
-
-    
 
     return (
         <div className="main-nav">
@@ -107,60 +125,7 @@ const Navbar = () => {
                         <SearchIcon className="search_icon" />
                     </div>
                     <div className="container-fluid">
-                        <button
-                        className="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                        >
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                            {/* NAVBAR LINKS */}
-                            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                                {
-                                    navbarMenu.map((navItem, index) => 
-                                        <li className={`nav-item ${navItem.dropdown ? 'dropdown' : ''}`} key={index}>
-                                            {navItem.dropdown ? (
-                                                <>
-                                                    <NavLink 
-                                                        className="nav-link dropdown-toggle"
-                                                        to="#" 
-                                                        role="button"
-                                                        data-bs-toggle="dropdown"
-                                                        aria-expanded="false"
-                                                    >
-                                                        {navItem.name}
-                                                    </NavLink>
-                                                    <div className="dropdown-menu" aria-labelledby={`navbarDropdown${index}`}>
-                                                        {navItem.dropdownItems.map((item, subindex) => (
-                                                            <NavLink 
-                                                                className="dropdown-item"
-                                                                key={subindex}
-                                                                to={`/${navItem.path}${typeof item.path === 'string' ? '/' + item.name.replace(/\s+/g, '').toLowerCase() : item.path}`}
-                                                                onClick={handleAddNewClientClick(item.path)}
-                                                            >
-                                                                {typeof item === 'string' ? item : item.name}
-                                                            </NavLink>
-                                                        ))}
-                                                    </div>
-                                                </>
-                                            ): (
-                                                <NavLink className="nav-link" to={navItem.path} aria-current={index === 0 ? "page" : undefined}>
-                                                    {navItem.name}
-                                                </NavLink>
-                                            )}
-                                        </li>
-                                    )
-                                }
-                            </ul>
-                            <div className="theme-btn">
-                                <NavLink to="/">Log Complaint</NavLink>
-                            </div>
-                        </div>
+                        <ul className="navbar-nav">{renderMenu(navbarMenu)}</ul>
                     </div>
                 </nav>
             </div>
