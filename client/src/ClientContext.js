@@ -17,5 +17,10 @@ export function ClientProvider({ children }){
 }
 
 export function useClientContext(){
-    return useContext(ClientContext)
+    const context = useContext(ClientContext)
+
+    if(!context){
+        throw new Error("useClientContext must be used within a client provider")
+    }
+    return context;
 }

@@ -12,6 +12,8 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <input 
                             type="text" required 
                             className="form-control" 
+                            id="firstName" name="firstName"
+                            autoComplete="given-name"
                             value={firstNameValue} 
                             onChange={onFirstNameChange}
                         />
@@ -21,6 +23,8 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <input 
                             type="text" required 
                             className="form-control" 
+                            id="lastName" name="lastName"
+                            autoComplete="family-name"
                             value={lastNameValue} 
                             onChange={onLastNameChange} 
                         />
@@ -30,6 +34,8 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <input 
                             type="number" required
                             className="form-control"
+                            id="age" name="age"
+                            autoComplete="off"
                             value={ageValue}
                             onChange={onAgeChange}
                         />
@@ -37,9 +43,8 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                     <div className="col-md-2">
                         <label htmlFor="gender" className="form-label">Gender</label>
                         <select 
-                            name="gender" 
-                            id="gender"
                             className="form-select"
+                            id="gender" name="gender"
                             value={genderValue}
                             onChange={onGenderChange}
                         >
@@ -52,7 +57,9 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <label htmlFor="contact" className="form-label">Contact</label>
                         <input 
                             type="text" required
-                            className="form-control" 
+                            className="form-control"
+                            id="contact" name="contact" 
+                            autoComplete="tel-national"
                             value={contactValue}
                             onChange={onContactChange}
                         />
@@ -62,6 +69,8 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <input 
                             type="text" 
                             className="form-control" 
+                            id="email" name="email"
+                            autoComplete="email"
                             value={emailValue}
                             onChange={onEmailChange}
                         />
@@ -70,7 +79,9 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <label htmlFor="address" className="form-label">Address</label>
                         <input 
                             type="text" required
-                            className="form-control" 
+                            className="form-control"
+                            id="address" name="address" 
+                            autoComplete="address-line1"
                             value={addressValue}
                             onChange={onAddressChange}
                         />
@@ -80,6 +91,7 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <input 
                             type="text" 
                             className="form-control" 
+                            id="visitpurpose" name="visitpurpose"
                             value={visitPurposeValue}
                             onChange={onVisitPurposeChange}
                         />
@@ -89,6 +101,7 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <input 
                             type="text" 
                             className="form-control" 
+                            id="entrytime" name="entrytime"
                             value={entryTimeValue}
                             onChange={onEntryTimeChange}
                         />
@@ -98,6 +111,7 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <input 
                             type="text" 
                             className="form-control" 
+                            id="exittime" name="exittime"
                             value={exitTimeValue}
                             onChange={onExitTimeChange}
                         />
@@ -107,6 +121,7 @@ const ClientForm = ({ onFormSubmit, onFirstNameChange, firstNameValue, onLastNam
                         <input 
                             type="text" 
                             className="form-control" 
+                            id="vulnerability" name="vulnerability"
                             value={vulnerabilityValue}
                             onChange={onVulnerabilityChange}
                         />

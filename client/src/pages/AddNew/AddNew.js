@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ClientForm from "../../components/ClientForm/ClientForm";
 import clientsService from "../../services/clients";
-import { useClientContext } from "../../ClientContext";
+import Notification from "../../components/Notification/Notification";
 
 const AddNew = () => {
-    const {updateClients} = useClientContext;
+    const [clients, setClients] = useState([])
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [age, setAge] = useState("");
@@ -16,6 +16,17 @@ const AddNew = () => {
     const [entryTime, setEntryTime] = useState("");
     const [exitTime, setExitTime] = useState("");
     const [vulnerability, setVulnerability] = useState("");
+    const [successMessage, setSuccessMessage] = useState(null);
+    const [errorMessage, setErrorMessage] = useState(null);
+
+    useEffect(() => {
+        clientsService
+        .getClients()
+        .then((allClients) => {
+            setClients(allClients)
+        })
+        .catch((err) => alert(err))
+    }, [])
 
 
     const handleFirstNameChange = (e) => {
@@ -68,8 +79,22 @@ const AddNew = () => {
             vulnerability
         }
 
-        clientsService.createClient(newClientObject).then(returnedClient => {
-            updateClients((previousClients) => [...previousClients, returnedClient])
+        // Check for duplicate records
+        // const alreadyExists = clients.some(
+        //     (client) => client.firstName.toLowerCase() === newClientObject.firstName.toLowerCase() || client.lastName.toLowerCase() === newClientObject.lastName.toLowerCase()
+        // )
+        
+        // if(alreadyExists){
+        //     const client = clients.find((c) => c.firstName)
+        // }
+
+        clientsService.createClient(newClientObject)
+        .then(returnedClient => {
+            setClients(clients.concat(returnedClient))
+            setSuccessMessage(`New Client ${returnedClient.firstName} ${returnedClient.lastName} added`)
+            setTimeout(() => {
+                setSuccessMessage(null)
+            }, 3000)
             setFirstName("")
             setLastName("")
             setContact("")
@@ -82,10 +107,17 @@ const AddNew = () => {
             setAge("")
             setVulnerability("")
         })
+        .catch((err) => {
+            setErrorMessage(err.response.data.error)
+            setTimeout(() => {
+                setErrorMessage(null)
+            }, 5000)
+        })
     }
 
     return ( 
         <>
+            <Notification successMessage={successMessage} errorMessage={errorMessage} />
             <ClientForm 
                 onFormSubmit={handleSubmit}
                 onFirstNameChange={handleFirstNameChange}
