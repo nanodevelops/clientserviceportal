@@ -27,15 +27,15 @@ clientRouter.post("/", async(request, response) => {
     const client = new Client({
         firstName: body.firstName,
         lastName: body.lastName,
+        age: body.age,
+        gender: body.gender,
         contact: body.contact,
         email: body.email,
         address: body.address,
-        gender: body.gender,
-        age: body.age,
-        vulnerability: body.vulnerability,
-        purposeOfVisit: body.purposeOfVisit,
+        visitPurpose: body.visitPurpose,
         timeIn: body.timeIn,
-        timeOut: body.timeOut
+        timeOut: body.timeOut,
+        vulnerability: body.vulnerability
     })
 
     if(!client.blacklisted){
