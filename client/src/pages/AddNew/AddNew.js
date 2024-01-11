@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ClientForm from "../../components/ClientForm/ClientForm";
 import clientsService from "../../services/clients";
 import Notification from "../../components/Notification/Notification";
@@ -18,6 +19,7 @@ const AddNew = () => {
     const [vulnerability, setVulnerability] = useState("");
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
+    const navigate = useNavigate()
 
     useEffect(() => {
         clientsService
@@ -79,15 +81,6 @@ const AddNew = () => {
             vulnerability
         }
 
-        // Check for duplicate records
-        // const alreadyExists = clients.some(
-        //     (client) => client.firstName.toLowerCase() === newClientObject.firstName.toLowerCase() || client.lastName.toLowerCase() === newClientObject.lastName.toLowerCase()
-        // )
-        
-        // if(alreadyExists){
-        //     const client = clients.find((c) => c.firstName)
-        // }
-
         clientsService.createClient(newClientObject)
         .then(returnedClient => {
             setClients(clients.concat(returnedClient))
@@ -95,16 +88,17 @@ const AddNew = () => {
             setTimeout(() => {
                 setSuccessMessage(null)
             }, 3000)
+            navigate("/")
             setFirstName("")
             setLastName("")
+            setAge("")
+            setGender("")
             setContact("")
             setEmail("")
+            setAddress("")
             setVisitPurpose("")
             setEntryTime("")
             setExitTime("")
-            setAddress("")
-            setGender("")
-            setAge("")
             setVulnerability("")
         })
         .catch((err) => {
