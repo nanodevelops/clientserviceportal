@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route exact path="/" element={<Home />} />
       {/* <Route path="/clients" element={<ClientList />}/> */}
       <Route path="/clients/addnew" element={<AddNew />}/>
     </Routes>

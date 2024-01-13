@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ClientForm from "../../components/ClientForm/ClientForm";
 import clientsService from "../../services/clients";
@@ -19,17 +19,7 @@ const AddNew = () => {
     const [vulnerability, setVulnerability] = useState("");
     const [successMessage, setSuccessMessage] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        clientsService
-        .getClients()
-        .then((allClients) => {
-            setClients(allClients)
-        })
-        .catch((err) => alert(err))
-    }, [])
-
+    const navigate = useNavigate();
 
     const handleFirstNameChange = (e) => {
         setFirstName(e.target.value)
@@ -87,8 +77,7 @@ const AddNew = () => {
             setSuccessMessage(`New Client ${returnedClient.firstName} ${returnedClient.lastName} added`)
             setTimeout(() => {
                 setSuccessMessage(null)
-            }, 3000)
-            navigate("/")
+            }, 10000)
             setFirstName("")
             setLastName("")
             setAge("")
@@ -100,6 +89,7 @@ const AddNew = () => {
             setEntryTime("")
             setExitTime("")
             setVulnerability("")
+            navigate("/")
         })
         .catch((err) => {
             setErrorMessage(err.response.data.error)
