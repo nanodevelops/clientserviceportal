@@ -1,13 +1,13 @@
-const clientRouter = require("express").Router()
+const clientsRouter = require("express").Router()
 const Client = require("../models/client")
 
-clientRouter.get("/", async(request, response) => {
+clientsRouter.get("/", async(request, response) => {
     const clients = await Client
         .find({})
     response.json(clients.map((client) => client.toJSON()))
 })
 
-clientRouter.get("/:id", async(request, response) => {
+clientsRouter.get("/:id", async(request, response) => {
     const client = await Client
         .findById(request.params.id)
     if(client) {
@@ -17,7 +17,7 @@ clientRouter.get("/:id", async(request, response) => {
     }
 })
 
-clientRouter.post("/", async(request, response) => {
+clientsRouter.post("/", async(request, response) => {
     const body = request.body
 
     if(!body.firstName || !body.lastName) {
@@ -27,7 +27,6 @@ clientRouter.post("/", async(request, response) => {
     const client = new Client({
         firstName: body.firstName,
         lastName: body.lastName,
-        age: body.age,
         gender: body.gender,
         contact: body.contact,
         email: body.email,
@@ -42,7 +41,9 @@ clientRouter.post("/", async(request, response) => {
         client.blacklisted = false
     }
     const savedClient = await client.save()
+
+
     response.status(201).json(savedClient)
 })
 
-module.exports = clientRouter
+module.exports = clientsRouter

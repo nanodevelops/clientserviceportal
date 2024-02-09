@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ClientForm from "../../components/ClientForm/ClientForm";
 import clientsService from "../../services/clients";
+import complaintsService from "../../services/complaints";
+import enquiriesService from "../../services/enquiries";
 import Notification from "../../components/Notification/Notification";
+
 
 const AddNew = () => {
     const [clients, setClients] = useState([])
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [age, setAge] = useState("");
     const [gender, setGender] = useState("");
     const [contact, setContact] = useState("");
     const [email, setEmail] = useState("");
@@ -27,9 +29,6 @@ const AddNew = () => {
     const handleLastNameChange = (e) => {
         setLastName(e.target.value)
     }
-    const handleAgeChange = (e) => {
-        setAge(e.target.value)
-    } 
     const handleGenderChange = (e) => {
         setGender(e.target.value)
     } 
@@ -54,13 +53,12 @@ const AddNew = () => {
     const handleVulnerabilityChange = (e) => {
         setVulnerability(e.target.value)
     } 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault()
 
         const newClientObject = {
             firstName,
             lastName,
-            age,
             gender,
             contact,
             email,
@@ -71,16 +69,40 @@ const AddNew = () => {
             vulnerability
         }
 
-        clientsService.createClient(newClientObject)
-        .then(returnedClient => {
+        await clientsService.createClient(newClientObject)
+        .then(async returnedClient => {
             setClients(clients.concat(returnedClient))
             setSuccessMessage(`New Client ${returnedClient.firstName} ${returnedClient.lastName} added`)
             setTimeout(() => {
                 setSuccessMessage(null)
-            }, 10000)
+            }, 1090000)
+
+            if(visitPurpose.toLowerCase() === "complaint"){
+                await complaintsService.createComplaint({
+                    client: returnedClient.id,
+                    vulnerability
+                })
+                .then((response) => {
+                    console.log("Complaint created:", response)
+                })
+                .catch((err) => {
+                    console.error("Error creating complaint:", err)
+                })
+            }else if(visitPurpose.toLowerCase() === "enquiry"){
+                await enquiriesService.createEnquiry({
+                    client: returnedClient.id,
+                    vulnerability
+                })
+                .then((response) => {
+                    console.log("Enquiry created", response)
+                })
+                .catch((err) => {
+                    console.error("Error creating enquiry", err)
+                })
+            }
+
             setFirstName("")
             setLastName("")
-            setAge("")
             setGender("")
             setContact("")
             setEmail("")
@@ -106,7 +128,6 @@ const AddNew = () => {
                 onFormSubmit={handleSubmit}
                 onFirstNameChange={handleFirstNameChange}
                 onLastNameChange={handleLastNameChange}
-                onAgeChange={handleAgeChange}
                 onGenderChange={handleGenderChange}
                 onContactChange={handleContactChange}
                 onEmailChange={handleEmailChange}

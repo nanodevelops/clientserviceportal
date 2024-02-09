@@ -3,7 +3,6 @@ const mongoose = require("mongoose")
 const clientSchema = new mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    age: { type: String, required: true },
     gender: { type: String },
     contact: { type: String, required: true},
     email: { type: String, required: true },

@@ -36,12 +36,6 @@ const Navbar = () => {
             children: [
                 {
                     id: 1,
-                    title: "Add New",
-                    path: "/complaints/addnew",
-                    cName: "submenu-item"
-                },
-                {
-                    id: 2,
                     title: "View All",
                     path: "/complaints/view-all",
                     cName: "submenu-item"
@@ -56,12 +50,6 @@ const Navbar = () => {
             children: [
                 {
                     id: 1,
-                    title: "Add New",
-                    path: "/enquiries/addnew",
-                    cName: "submenu-item"
-                },
-                {
-                    id: 2,
                     title: "View All",
                     path: "/enquiries/view-all",
                     cName: "submenu-item"

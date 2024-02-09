@@ -1,21 +1,18 @@
 const mongoose = require("mongoose")
 
 const complaintSchema = new mongoose.Schema({
-    id: Number,
     client: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Client"
     },
-    disability: { type: String },
+    vulnerability: { type: String },
     mode: { type: String },
     brief: { type: String },
     author: { type: String },
     clientEndorsed: { type: Boolean },
     csuOfficerEndorsed: { type: Boolean },
     dueDate: Date,
-    pending: { type: Boolean },
-    resolved: { type: Boolean },
-    archived: { type: Boolean },
+    status: { type: String }
 })
 
 complaintSchema.set("toJSON", {
