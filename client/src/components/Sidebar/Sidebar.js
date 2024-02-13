@@ -7,18 +7,14 @@ import PersonIcon from "@mui/icons-material/Person";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import TableChartIcon from "@mui/icons-material/TableChart";
 import React from "react";
-import { Link } from "react-router-dom";
 import "./Sidebar.scss";
+
+
+
 
 const Sidebar = () => {
     return ( 
         <div className="bg-light border-end" id="sidebar">
-            {/* LOGO */}
-            <div className="brand-logo">
-                <Link to="/" style={{ textDecoration: "none" }}>
-                    <h3 className="text-none">AdminDashboard</h3>
-                </Link>
-            </div>
             <div className="links">
                 <ul className="list-unstyled">
                     <p className="span">Main</p>

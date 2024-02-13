@@ -1,30 +1,42 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import SearchIcon from "@mui/icons-material/Search"
-import React from "react";
-import "./Navbar.scss";
 
-import { NavLink } from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LanguageIcon from "@mui/icons-material/Language";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
+import React, { useContext, useState } from "react";
+import "./Navbar.scss";
+import logo from "../../assets/logo.png";
+
+
+import { Link, NavLink } from "react-router-dom";
+import { ColorContext } from "../../ColorContext/darkContext";
 
 const Navbar = () => {
+    const [toggle, setToggle] = useState(false);
+    const {darkMode, dispatch} = useContext(ColorContext)
 
+    // NAVIGATION MENU
     const navbarMenu = [
         {
             id: 1,
             title: "Clients",
             path: "/clients",
-            cName: 'nav-item',
+            cName: 'nav-item dropdown',
             children: [
                 {
                     id: 1,
                     title: "Add New",
                     path: "/clients/addnew",
-                    cName: "submenu-item"
+                    cName: "dropdown-item"
                 },
                 {
                     id: 2,
                     title: "View All",
                     path: "/clients/view-all",
-                    cName: "submenu-item"
+                    cName: "dropdown-item"
                 }
             ]
         },
@@ -32,13 +44,13 @@ const Navbar = () => {
             id: 2,
             title: "Complaints",
             path: "/complaints",
-            cName: 'nav-item',
+            cName: 'nav-item dropdown',
             children: [
                 {
                     id: 1,
                     title: "View All",
                     path: "/complaints/view-all",
-                    cName: "submenu-item"
+                    cName: "dropdown-item"
                 }
             ]
         },
@@ -46,13 +58,13 @@ const Navbar = () => {
             id: 3,
             title: "Enquiries",
             path: "/enquiries",
-            cName: 'nav-item',
+            cName: 'nav-item dropdown',
             children: [
                 {
                     id: 1,
                     title: "View All",
                     path: "/enquiries/view-all",
-                    cName: "submenu-item"
+                    cName: "dropdown-item"
                 }
             ]
         },
@@ -60,24 +72,25 @@ const Navbar = () => {
             id: 4,
             title: "Reports",
             path: "/reports",
+            cName: 'nav-item dropdown',
             children: [
                 {
                     id: 1,
                     title: "Clients Report",
                     path: "/reports/clients-report",
-                    cName: 'submenu-item'
+                    cName: 'dropdown-item'
                 },
                 {
                     id: 2,
                     title: "Complaints Report",
                     path: "/reports/complaints-report",
-                    cName: 'submenu-item'
+                    cName: 'dropdown-item'
                 },
                 {
                     id: 3,
                     title: "Enquiries Report",
                     path: "/reports/enquiries-report",
-                    cName: 'submenu-item'
+                    cName: 'dropdown-item'
                 }
             ]
         },
@@ -89,6 +102,10 @@ const Navbar = () => {
         },
     ]
 
+    const handleToggle = () => {
+        setToggle(!toggle);
+    }
+
     const renderMenu = (menuItems) => {
         return menuItems.map((menuItem) => (
             <li key={menuItem.id} className={menuItem.cName}>
@@ -96,7 +113,7 @@ const Navbar = () => {
                     {menuItem.title}
                 </NavLink>
                 {menuItem.children && (
-                    <ul className="submenu">
+                    <ul className="dropdown-menu">
                         {renderMenu(menuItem.children)}
                     </ul>
                 )}
@@ -106,17 +123,42 @@ const Navbar = () => {
 
     return (
         <div className="main-nav">
-            <div className="container">
-                <nav className="navbar navbar-expand-lg">
-                    <div className="search" id="search-form">
-                        <input type="text" placeholder="Search.." name="search-form" />
-                        <SearchIcon className="search_icon" />
-                    </div>
-                    <div className="container-fluid">
-                        <ul className="navbar-nav">{renderMenu(navbarMenu)}</ul>
-                    </div>
-                </nav>
+            <div className="menu-logo">
+                {toggle ? (
+                    <CloseIcon className="menu-icon" onClick={handleToggle} />
+                ) : (
+                    <MenuIcon className="menu-icon" onClick={handleToggle} />
+                )}
+                <Link to="/" style={{ textDecoration: "none" }}>
+                    <img src={logo} alt="logo" className="img-fluid logo-img"/>
+                </Link>
             </div>
+            <div className="search" id="search-form">
+                <input type="text" placeholder="Search.." name="search-form" />
+                <SearchIcon className="search-icon" />
+            </div>
+            <div className="menu-items">
+                <div className="item language">
+                    <LanguageIcon className="language-icon"/>
+                    <p>English</p>
+                </div>
+                <div className="item">
+                    {!darkMode ? (
+                        <DarkModeIcon 
+                            className="item-icon"
+                            onClick={() => dispatch({ type: "TOGGLE" })}
+                        />
+                    ) : (
+                        <LightModeIcon 
+                            className="item-icon light"
+                            onClick={() => dispatch({ type: "TOGGLE" })}
+                        />
+                    )}
+                </div>
+            </div>               
+            <nav className="nav-menu">
+                <ul>{renderMenu(navbarMenu)}</ul>
+            </nav>           
         </div>
     )
 }

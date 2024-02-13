@@ -1,37 +1,6 @@
 @import "../../sass/fonts.scss";
 @import "../../sass/colors.scss";
 
-.main-nav {
-    position: fixed;
-    left: 18rem;
-    right: 0;
-    background-color: $color-white;
-    z-index: 1000;
-}
-
-.navbar {
-    padding: 1rem;
-    border-bottom: 1px solid $color-green; // Add your preferred border color
-}
-
-a.nav-link {
-    color: $color-green;
-}
-.search{
-    display: flex;
-    align-items: center;
-    position: relative;
-
-    input{
-        border: none;
-        outline: none;
-        font-size: 14px;
-        padding: 6px 10px;
-    }
-
-    .search_icon{
-        cursor: pointer;
-        color: $color-green;
-        padding-left: 5px;
-    }
+.nav-menu, #search-form {
+    display: none;
 }

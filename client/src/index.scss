@@ -2,16 +2,24 @@
 @import "./sass/colors.scss";
 
 // MAIN CSS
-body{
-    padding: 0;
-    margin: 0;
-    font-family: $body-font;
-    height: 100vh;
-    overflow: hidden;
+#root {
+    width: 90%;
+    margin: 0 auto;
+    padding: 2rem 0;
 }
-#root{
-    display: flex;
-    height: 100%;
+.App.dark {
+    background-color: #111;
+    color: rgb(156, 156, 156);
+
+    .home {
+        .bg-color {
+            background-color: rgba(51, 51, 51, 0.425);
+        }
+    }
+}
+img{
+    display: block;
+    max-width: 100%;
 }
 .theme-btn {
     a{

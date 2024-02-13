@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import clientsService from "../../services/clients";
-import Client from "../../components/Client.js/Client";
+import Client from "../../components/Client/Client";
 
 const Clients = () => {
     const [clients, setClients] = useState([]);
@@ -16,7 +16,7 @@ const Clients = () => {
     }, [setClients])
     return ( 
         <div>
-            <div className="container">
+            <div className="container container-fluid">
                 {clients && <Client clients={clients} />}
             </div>
         </div>

@@ -1,22 +1,4 @@
 @import "../../sass/fonts.scss";
 @import "../../sass/colors.scss";
 
-#sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 250px; // Adjust the width according to your design
-    background-color: $color-green; // Add your preferred background color
-    overflow-y: auto;
-    z-index: 900;
-}
 
-.list-unstyled {
-    padding: 1rem;
-}
-
-img#brand-logo{
-    width: 100%;
-    max-width: 200px;
-}
