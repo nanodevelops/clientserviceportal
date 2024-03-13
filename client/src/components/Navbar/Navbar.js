@@ -1,18 +1,23 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import CloseIcon from "@mui/icons-material/Close";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import FullscreenExitIcon from '@mui/icons-material/FullscreenExit';
 import LanguageIcon from "@mui/icons-material/Language";
 import LightModeIcon from "@mui/icons-material/LightMode";
+import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useContext, useState } from "react";
+
 import "./Navbar.scss";
 import logo from "../../assets/logo.png";
+import admin from "../../assets/user/admin-user.png";
 
 
 import { Link, NavLink } from "react-router-dom";
 import { ColorContext } from "../../ColorContext/darkContext";
+
 
 const Navbar = () => {
     const [toggle, setToggle] = useState(false);
@@ -123,6 +128,7 @@ const Navbar = () => {
 
     return (
         <div className="main-nav">
+            {/* NAV MENU LOGO */}
             <div className="menu-logo">
                 {toggle ? (
                     <CloseIcon className="menu-icon" onClick={handleToggle} />
@@ -133,15 +139,19 @@ const Navbar = () => {
                     <img src={logo} alt="logo" className="img-fluid logo-img"/>
                 </Link>
             </div>
+            {/* NAV SEARCH FORM */}
             <div className="search" id="search-form">
                 <input type="text" placeholder="Search.." name="search-form" />
                 <SearchIcon className="search-icon" />
             </div>
+            {/* NAV UTILITIES */}
             <div className="menu-items">
+                {/* LANGUAGE UTIL */}
                 <div className="item language">
                     <LanguageIcon className="language-icon"/>
                     <p>English</p>
                 </div>
+                {/* LIGHT/DARK MODE UTIL */}
                 <div className="item">
                     {!darkMode ? (
                         <DarkModeIcon 
@@ -154,6 +164,23 @@ const Navbar = () => {
                             onClick={() => dispatch({ type: "TOGGLE" })}
                         />
                     )}
+                </div>
+                {/* TOGGLE FULLSCREEN */}
+                <div className="item">
+                    <FullscreenExitIcon className="item-icon" />
+                </div>
+                {/* CHAT UTIL */}
+                <div className="item">
+                    <ChatBubbleOutlineIcon className="item-icon" />
+                    <span className="badge">2</span>
+                </div>
+                {/* NOTIFICATIONS UTIL */}
+                <div className="item">
+                    <NotificationsNoneIcon className="item-icon" />
+                    <span className="badge">1</span>
+                </div>
+                <div className="item">
+                    <img src={admin} alt="admin" className="admin-pic" />
                 </div>
             </div>               
             <nav className="nav-menu">

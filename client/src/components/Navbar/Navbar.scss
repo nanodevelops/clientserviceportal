@@ -1,6 +1,38 @@
 @import "../../sass/fonts.scss";
 @import "../../sass/colors.scss";
 
-.nav-menu, #search-form {
-    display: none;
+.main-nav {
+
+    .menu-logo {
+        display: flex;
+        flex-direction: row-reverse;
+
+        .menu-icon {
+            align-self: center;
+        }
+
+        a {
+            .logo-img {
+                width: 13.11%;
+            }
+        }
+    }
+
+    .menu-items {
+        display: flex;
+        justify-content: space-between;
+
+        .item.language {
+            display: flex;
+        }
+        .item {
+            img {
+                width: 10.11%;
+            }
+        }
+    }
+
+    .nav-menu, #search-form {
+        display: none;
+    }
 }
