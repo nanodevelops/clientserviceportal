@@ -2,7 +2,6 @@
 @import "../../sass/colors.scss";
 
 .main-nav {
-
     .menu-logo {
         display: flex;
         flex-direction: row-reverse;
@@ -20,14 +19,27 @@
 
     .menu-items {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
 
+        .item {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+
+            img {
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+            }
+        }
         .item.language {
             display: flex;
-        }
-        .item {
-            img {
-                width: 10.11%;
+            align-items: center;
+
+            .language-icon {
+                margin-right: 5px;
             }
         }
     }
