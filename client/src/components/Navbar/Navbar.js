@@ -127,9 +127,10 @@ const Navbar = () => {
     }
 
     return (
-        <div className="main-nav">
-            {/* NAV MENU LOGO */}
-            <div className="menu-logo">
+        <div className={`main-nav ${toggle ? 'active' : ''}`}>
+           <div className="container">
+             {/* NAV MENU LOGO */}
+             <div className="menu-logo">
                 {toggle ? (
                     <CloseIcon className="menu-icon" onClick={handleToggle} />
                 ) : (
@@ -186,6 +187,7 @@ const Navbar = () => {
             <nav className="nav-menu">
                 <ul>{renderMenu(navbarMenu)}</ul>
             </nav>           
+           </div>
         </div>
     )
 }

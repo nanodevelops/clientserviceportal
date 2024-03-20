@@ -44,7 +44,13 @@
         }
     }
 
-    .nav-menu, #search-form {
+    .search, .nav-menu {
         display: none;
+    }
+
+    &.active {
+        .search, .nav-menu {
+            display: block;
+        }
     }
 }
