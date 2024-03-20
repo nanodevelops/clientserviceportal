@@ -52,5 +52,53 @@
         .search, .nav-menu {
             display: block;
         }
+        .nav-menu ul {
+            width: 100%;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+        }
+        .nav-item {
+            &:hover {
+                background-color: rgba(0, 128, 0, 0.8);
+                cursor: pointer;
+            }
+
+            &.dropdown {
+                position: relative;
+
+                .toggle-icon {
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    cursor: pointer;
+                }
+
+                .dropdown-menu {
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    background-color: #fff;
+                    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                    z-index: 1000;
+
+                    &.active {
+                        display: block;
+                    }
+                }
+                &:hover {
+                    .dropdown-menu {
+                        display: block;
+                    }
+                }
+            }
+        }
     }
+
+
 }

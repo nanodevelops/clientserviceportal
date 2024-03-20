@@ -113,7 +113,7 @@ const Navbar = () => {
 
     const renderMenu = (menuItems) => {
         return menuItems.map((menuItem) => (
-            <li key={menuItem.id} className={menuItem.cName}>
+            <li key={menuItem.id} className={`nav-item ${menuItem.cName}`}>
                 <NavLink to={menuItem.path} className="nav-link">
                     {menuItem.title}
                 </NavLink>
