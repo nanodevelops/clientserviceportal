@@ -2,8 +2,14 @@ const complaintsRouter = require("express").Router()
 const Complaint = require("../models/complaint")
 
 complaintsRouter.get("/", async(request, response) => {
-    const complaints = await Complaint.find({})
-    response.json(complaints.map((complaint) => complaint.toJSON()))
+    const complaints = await Complaint.find({}).populate("client")
+    response.json(complaints.map((complaint) => {
+      return {
+        client: complaint.clientName,
+        id: complaint._id,
+        vulnerability: complaint.vulnerability
+      }
+    }))
 })
 
 complaintsRouter.post("/", async (request, response) => {

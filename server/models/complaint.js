@@ -23,4 +23,8 @@ complaintSchema.set("toJSON", {
     }
 })
 
+complaintSchema.virtual("clientName").get(function(){
+    return `${this.client.firstName} ${this.client.lastName}`
+})
+
 module.exports = mongoose.model("Complaint", complaintSchema)
