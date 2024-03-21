@@ -1,6 +1,8 @@
 import React from "react";
 import PageTitle from "../PageTitle/PageTitle";
 
+import "./Complaint.scss";
+
 const Complaint = ({ complaints }) => {
     return(
         <>

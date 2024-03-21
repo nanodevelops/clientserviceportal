@@ -1,0 +1,9 @@
+.complaints-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+.complaints-box {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
