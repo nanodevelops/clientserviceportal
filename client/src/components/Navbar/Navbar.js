@@ -21,6 +21,7 @@ import { ColorContext } from "../../ColorContext/darkContext";
 
 const Navbar = () => {
     const [toggle, setToggle] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(null)
     const {darkMode, dispatch} = useContext(ColorContext)
 
     // NAVIGATION MENU
@@ -109,6 +110,7 @@ const Navbar = () => {
 
     const handleToggle = () => {
         setToggle(!toggle);
+        setActiveDropdown(null)
     }
 
     const renderMenu = (menuItems) => {
@@ -118,9 +120,11 @@ const Navbar = () => {
                     {menuItem.title}
                 </NavLink>
                 {menuItem.children && (
-                    <ul className="dropdown-menu">
-                        {renderMenu(menuItem.children)}
-                    </ul>
+                    <>
+                        <ul className={`dropdown-menu ${activeDropdown === menuItem.id ? 'active' : ''}`}>
+                            {renderMenu(menuItem.children)}
+                        </ul>
+                    </>
                 )}
             </li>
         ))

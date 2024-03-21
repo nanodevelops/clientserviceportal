@@ -1,11 +1,9 @@
 import { Link } from "react-router-dom";
-import PageTitle from "../PageTitle/PageTitle";
 
 const Client = ({ clients }) => {
     return ( 
         <>
             <div className="container">
-                <PageTitle title="Clients"/>
                 <table className="table table-sm table-hover">
                     <thead className="table-light">
                         <tr>
