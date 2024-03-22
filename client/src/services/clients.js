@@ -26,4 +26,6 @@ const functions = {
     createClient
 }
 
+export { getClients };
+
 export default functions;

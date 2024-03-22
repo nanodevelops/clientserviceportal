@@ -4,6 +4,7 @@ import AddNew from "./pages/AddNew/AddNew";
 import Clients from "./pages/Clients/Clients";
 import Complaints from "./pages/Complaints/Complaints";
 import Enquiries from "./pages/Enquiries/Enquiries";
+import Reports from "./pages/Reports/Reports";
 import { Routes, Route } from "react-router-dom";
 import { ColorContext } from "./ColorContext/darkContext";import { useContext } from "react";
 
@@ -21,6 +22,7 @@ function App() {
       <Route path="/complaints/view-all" element={<Complaints />} />
       <Route path="/enquiries" element={<Enquiries />} />
       <Route path="/enquiries/view-all" element={<Enquiries />} />
+      <Route path="/reports" element={<Reports />} />
     </Routes>
     </div>
   )
