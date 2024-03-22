@@ -2,8 +2,14 @@ const enquiriesRouter = require("express").Router()
 const Enquiry = require("../models/enquiry")
 
 enquiriesRouter.get("/", async(request, response) => {
-    const enquiries = await Enquiry.find({})
-    response.json(enquiries.map((enquiry) => enquiry.toJSON()))
+    const enquiries = await Enquiry.find({}).populate("client")
+    response.json(enquiries.map((enquiry) => {
+        return {
+            client: enquiry.clientName,
+            id: enquiry.id,
+            vulnerability: enquiry.vulnerability
+        }
+    }))
 })
 
 enquiriesRouter.post("/", async(request, response) => {
