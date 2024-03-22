@@ -132,25 +132,33 @@ const Navbar = () => {
 
     return (
         <div className={`main-nav ${toggle ? 'active' : ''}`}>
-           <div className="container">
-             {/* NAV MENU LOGO */}
-             <div className="menu-logo">
-                {toggle ? (
-                    <CloseIcon className="menu-icon" onClick={handleToggle} />
-                ) : (
-                    <MenuIcon className="menu-icon" onClick={handleToggle} />
-                )}
-                <Link to="/" style={{ textDecoration: "none" }}>
-                    <img src={logo} alt="logo" className="img-fluid logo-img"/>
-                </Link>
+            {/* NAV MENU BAR */}
+            <div className="menubar container container-fluid">
+                <div className="logo">
+                    <Link to="/" style={{ textDecoration: "none" }}>
+                        <img src={logo} alt="logo" className="img-fluid logo-img"/>
+                    </Link>
+                </div>
+                <div className="menubar-items">
+                    <div className="item admin">
+                        <img src={admin} alt="admin" className="img-fluid admin-img" />
+                    </div>
+                    <div className="item toggle-icon">
+                        {toggle ? (
+                            <CloseIcon className="menu-icon" onClick={handleToggle} />
+                        ) : (
+                            <MenuIcon className="menu-icon" onClick={handleToggle} />
+                        )}
+                    </div>
+                </div>
             </div>
             {/* NAV SEARCH FORM */}
-            <div className="search" id="search-form">
+            <div className="search container" id="search-form">
                 <input type="text" placeholder="Search.." name="search-form" />
                 <SearchIcon className="search-icon" />
             </div>
             {/* NAV UTILITIES */}
-            <div className="menu-items">
+            <div className="menu-utilities">
                 {/* LANGUAGE UTIL */}
                 <div className="item language">
                     <LanguageIcon className="language-icon"/>
@@ -184,14 +192,10 @@ const Navbar = () => {
                     <NotificationsNoneIcon className="item-icon" />
                     <span className="badge">1</span>
                 </div>
-                <div className="item">
-                    <img src={admin} alt="admin" className="admin-pic" />
-                </div>
-            </div>               
+            </div>              
             <nav className="nav-menu">
                 <ul>{renderMenu(navbarMenu)}</ul>
             </nav>           
-           </div>
         </div>
     )
 }
