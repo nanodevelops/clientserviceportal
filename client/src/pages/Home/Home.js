@@ -6,9 +6,9 @@ import "./Home.scss";
 
 const Home = () => {
     return(
-        <>
+        <div className="homepage">
             <Navbar />
-            <div id="home">
+            <div id="home-content">
                 <Sidebar />
                 <div className="bg-color"></div>
                 <div className="clients-table">
@@ -16,7 +16,7 @@ const Home = () => {
                     <Clients />
                 </div>  
             </div>
-        </>
+        </div>
 
     )
 }

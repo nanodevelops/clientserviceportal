@@ -115,88 +115,67 @@ const Navbar = () => {
 
     const renderMenu = (menuItems) => {
         return menuItems.map((menuItem) => (
-            <li key={menuItem.id} className={`nav-item ${menuItem.cName}`}>
-                <NavLink to={menuItem.path} className="nav-link">
-                    {menuItem.title}
-                </NavLink>
-                {menuItem.children && (
+            <li key={menuItem.id} className={`nav-item ${menuItem.children ? "dropdown" : ""}`}>
+                {menuItem.children ? (
                     <>
-                        <ul className={`dropdown-menu ${activeDropdown === menuItem.id ? 'active' : ''}`}>
+                        <NavLink to={menuItem.path} className="nav-link dropdown-toggle" id={`navbarDropdown${menuItem.id}`} role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {menuItem.title}
+                        </NavLink>
+                        <ul className="dropdown-menu" aria-labelledby={`navbarDropdown${menuItem.id}`}>
                             {renderMenu(menuItem.children)}
                         </ul>
                     </>
+                ) : (
+                    <NavLink to={menuItem.path} className="nav-link"> 
+                        {menuItem.title}
+                    </NavLink>
                 )}
             </li>
         ))
     }
 
     return (
-        <div className={`main-nav ${toggle ? 'active' : ''}`}>
-            {/* NAV MENU BAR */}
-            <div className="menubar container container-fluid">
-                <div className="logo">
-                    <Link to="/" style={{ textDecoration: "none" }}>
-                        <img src={logo} alt="logo" className="img-fluid logo-img"/>
-                    </Link>
-                </div>
-                <div className="menubar-items">
-                    <div className="item admin">
-                        <img src={admin} alt="admin" className="img-fluid admin-img" />
-                    </div>
-                    <div className="item toggle-icon">
-                        {toggle ? (
-                            <CloseIcon className="menu-icon" onClick={handleToggle} />
-                        ) : (
-                            <MenuIcon className="menu-icon" onClick={handleToggle} />
-                        )}
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <div className="container-fluid">
+                <Link className="navbar-brand" to="/">
+                    <img src={logo} alt="logo" width="13.333%" height="13.333%"/>
+                </Link>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className={`collapse navbar-collapse ${toggle ? "show" : ""}`} id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        {renderMenu(navbarMenu)}
+                    </ul>
+                    <div className="d-flex">
+                        <div className="nav-item language">
+                            <LanguageIcon className="language-icon"/>
+                        </div>
+                        <div className="nav-item">
+                            {!darkMode ? (
+                                <DarkModeIcon 
+                                    className="item-icon"
+                                    onClick={() => dispatch({ type: "TOGGLE" })}
+                                />
+                            ) : (
+                                <LightModeIcon 
+                                    className="item-icon light"
+                                    onClick={() => dispatch({ type: "TOGGLE" })}
+                                />
+                            )}
+                        </div>
+                        <div className="nav-item">
+                            <form action="" className="d-flex">
+                                <input type="search" className="form-control me-2" placeholder="Search" aria-label="Search"/>
+                                <button className="btn btn-outline-success" type="submit">
+                                    <SearchIcon />
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-            {/* NAV SEARCH FORM */}
-            <div className="search container" id="search-form">
-                <input type="text" placeholder="Search.." name="search-form" />
-                <SearchIcon className="search-icon" />
-            </div>
-            {/* NAV UTILITIES */}
-            <div className="menu-utilities">
-                {/* LANGUAGE UTIL */}
-                <div className="item language">
-                    <LanguageIcon className="language-icon"/>
-                    <p>English</p>
-                </div>
-                {/* LIGHT/DARK MODE UTIL */}
-                <div className="item">
-                    {!darkMode ? (
-                        <DarkModeIcon 
-                            className="item-icon"
-                            onClick={() => dispatch({ type: "TOGGLE" })}
-                        />
-                    ) : (
-                        <LightModeIcon 
-                            className="item-icon light"
-                            onClick={() => dispatch({ type: "TOGGLE" })}
-                        />
-                    )}
-                </div>
-                {/* TOGGLE FULLSCREEN */}
-                <div className="item">
-                    <FullscreenExitIcon className="item-icon" />
-                </div>
-                {/* CHAT UTIL */}
-                <div className="item">
-                    <ChatBubbleOutlineIcon className="item-icon" />
-                    <span className="badge">2</span>
-                </div>
-                {/* NOTIFICATIONS UTIL */}
-                <div className="item">
-                    <NotificationsNoneIcon className="item-icon" />
-                    <span className="badge">1</span>
-                </div>
-            </div>              
-            <nav className="nav-menu">
-                <ul>{renderMenu(navbarMenu)}</ul>
-            </nav>           
-        </div>
+        </nav>
     )
 }
 

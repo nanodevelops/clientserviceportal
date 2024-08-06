@@ -2,10 +2,13 @@
 @import "./sass/colors.scss";
 
 // MAIN CSS
-#root {
-    width: 90%;
-    margin: 0 auto;
-    padding: 2rem 0;
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    font-size: 1.3rem;
 }
 .App.dark {
     background-color: #111;
@@ -18,9 +21,14 @@
     }
 }
 img{
-    display: block;
     max-width: 100%;
 }
+.container {
+    width: 80%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
 .theme-btn {
     a{
         background: $color-green;
