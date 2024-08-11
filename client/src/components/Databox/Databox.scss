@@ -1,0 +1,65 @@
+@import "../../sass//fonts.scss";
+@import "../../sass/colors.scss";
+
+.databox {
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    flex: 1;
+    justify-content: space-between;
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 6px;
+    background-color: whitesmoke;
+
+    .name-field {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .title{
+            color: $color-green;
+            font-weight: 700;
+            letter-spacing: 0.05rem;
+        }
+
+        .positive {
+            display: flex;
+            align-items: center;
+
+            &.negative {
+                color: $color-yellow;
+            }
+            &.positive {
+                color: $color-green;
+            }
+        }
+    }
+    .counts {
+        font-size: 1.6rem;
+        margin: 20px 0px;
+        display: flex;
+        align-items: center;
+    }
+    .see-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a{
+            text-decoration: underline;
+            .link{
+                color: $color-green;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &:hover{
+                    color: $color-blue;
+                }
+            }
+        }
+        .icon{
+            padding: 5px;
+            font-size: 30px;
+            border-radius: 4px;
+        }
+    }
+}

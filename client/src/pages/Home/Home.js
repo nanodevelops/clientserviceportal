@@ -9,17 +9,29 @@ const Home = () => {
     return(
         <div className="homepage">
             <Navbar />
-            <div class="" id="home-content">
-                <Sidebar />
-                <div className="bg-color"></div>
-                <div className="home-cards">
-                    <Databox type="clients"/>
-                    <Databox type="complaints"/>
-                    <Databox type="enquiries"/>
-                </div>
-                <div className="clients-table">
-                    <p className="title">Latest additions</p>
-                    <Clients />
+            <div class="container-fluid" id="home-content">
+                <div className="row">
+                    <div className="col-md-3">
+                        <Sidebar />
+                    </div>
+                    <div className="col-md-9">
+                        <div className="bg-color"></div>
+                        <div className="row home-cards mb-4">
+                            <div className="col-md-4">
+                                <Databox type="clients"/>
+                            </div>
+                            <div className="col-md-4">
+                                <Databox type="complaints"/>
+                            </div>
+                            <div className="col-md-4">
+                                <Databox type="enquiries"/>
+                            </div>
+                        </div>
+                        <div className="clients-table">
+                            <p className="title">Latest additions</p>
+                            <Clients />
+                        </div>
+                    </div>
                 </div>  
             </div>
         </div>
@@ -28,4 +40,5 @@ const Home = () => {
 }
  
 export default Home;
+
 

@@ -12,6 +12,8 @@ import { ContactSupport } from "@mui/icons-material";
 import ListIcon from '@mui/icons-material/List';
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 
+import "./Databox.scss";
+
 const Databox = ({ type }) => {
     const [data, setData] = useState(null)
     // let title, icon, link, count;
@@ -50,7 +52,7 @@ const Databox = ({ type }) => {
                     case "enquiries":
                         count = await enquiriesService.getEnquiriesCount()
                         setData({
-                            title: "Enquiries",
+                            title: "ENQUIRIES",
                             isMoney: false,
                             count,
                             icon: (
@@ -75,7 +77,7 @@ const Databox = ({ type }) => {
     return (
         <div className="databox">
             <div className="name-field">
-                <p>{data.title}</p>
+                <p className="title">{data.title}</p>
                 <span className="positive">
                     <KeyboardArrowUp />
                     20%
@@ -87,7 +89,7 @@ const Databox = ({ type }) => {
             </div>
             <div className="see-item">
                 <Link to={data.linkto}>
-                    <p>{data.link}</p>
+                    <p className="link">{data.link}</p>
                 </Link>
                 {data.icon}
             </div>
