@@ -9,6 +9,10 @@ const getEnquiries = () => {
     return request.then((response) => response.data)
 }
 
+const getEnquiriesCount = () => {
+    const request = axios.get(`${enquiriesEndpoint}/count`)
+    return request.then((response) => response.data.count)
+}
 const createEnquiry = (newEnquiryObject) => {
     const request = axios.post(enquiriesEndpoint, newEnquiryObject)
     return request.then((response) => response.data)
@@ -16,6 +20,7 @@ const createEnquiry = (newEnquiryObject) => {
 
 const functions = {
     getEnquiries,
+    getEnquiriesCount,
     createEnquiry
 }
 

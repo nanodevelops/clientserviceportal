@@ -9,12 +9,9 @@ import TableChartIcon from "@mui/icons-material/TableChart";
 import React from "react";
 import "./Sidebar.scss";
 
-
-
-
 const Sidebar = () => {
     return ( 
-        <div className="bg-light border-end" id="sidebar">
+        <div className="sidebar" id="sidebar">
             <div className="links">
                 <ul className="list-unstyled">
                     <p className="span">Main</p>

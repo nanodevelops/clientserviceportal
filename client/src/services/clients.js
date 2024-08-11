@@ -15,6 +15,11 @@ const getClient = (id) => {
     return request.then((response) => response.data)
 }
 
+const getClientsCount = () => {
+    const request = axios.get(`${clientsEndpoint}/count`)
+    return request.then((response) => response.data.count)
+}
+
 const createClient = (newClientObject) => {
     const request = axios.post(clientsEndpoint, newClientObject)
     return request.then((response) => response.data)
@@ -23,6 +28,7 @@ const createClient = (newClientObject) => {
 const functions = {
     getClients,
     getClient,
+    getClientsCount,
     createClient
 }
 

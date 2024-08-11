@@ -8,7 +8,10 @@ const getComplaints = () => {
     const request = axios.get(complaintsEndpoint)
     return request.then((response) => response.data)
 }
-
+const getComplaintsCount = () => {
+    const request = axios.get(`${complaintsEndpoint}/count`)
+    return request.then((response) => response.data.count)
+}
 const createComplaint = (newComplaintObject) => {
     const request = axios.post(complaintsEndpoint, newComplaintObject)
     return request.then((response) => response.data)
@@ -16,6 +19,7 @@ const createComplaint = (newComplaintObject) => {
 
 const functions = {
     getComplaints,
+    getComplaintsCount,
     createComplaint
 }
 

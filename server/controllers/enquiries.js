@@ -12,6 +12,15 @@ enquiriesRouter.get("/", async(request, response) => {
     }))
 })
 
+enquiriesRouter.get("/count", async(request, response) => {
+    try {
+        const enquiriesCount = await Enquiry.countDocuments({});
+        response.json({ count: enquiriesCount })
+    } catch (error) {
+        response.status(500).json({ error: "Error fetching enquiries count" })
+    }
+})
+
 enquiriesRouter.post("/", async(request, response) => {
     const body = request.body;
 

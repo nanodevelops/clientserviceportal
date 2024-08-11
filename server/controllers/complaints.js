@@ -12,6 +12,15 @@ complaintsRouter.get("/", async(request, response) => {
     }))
 })
 
+complaintsRouter.get("/count", async(request, response) => {
+  try {
+      const complaintCount = await Complaint.countDocuments({});
+      response.json({ count: complaintCount })
+  } catch (error) {
+      response.status(500).json({ error: "Error fetching complaints count" })
+  }
+})
+
 complaintsRouter.post("/", async (request, response) => {
     const body = request.body;
   

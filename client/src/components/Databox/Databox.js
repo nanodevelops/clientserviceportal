@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+
 import clientsService from "../../services/clients";
 import complaintsService from "../../services/complaints";
 import enquiriesService from "../../services/enquiries";
@@ -8,76 +9,68 @@ import { KeyboardArrowUp } from "@mui/icons-material";
 import { PermIdentity } from "@mui/icons-material";
 import { NewReleases } from "@mui/icons-material";
 import { ContactSupport } from "@mui/icons-material";
+import ListIcon from '@mui/icons-material/List';
+import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 
-const Databox = ({ type, totalCount }) => {
+const Databox = ({ type }) => {
     const [data, setData] = useState(null)
     // let title, icon, link, count;
+     
+    useEffect (() => {
+        const fetchData = async() => {
+            try {
+                let count;
+                switch (type) {
+                    case "clients":
+                        count = await clientsService.getClientsCount()
+                        setData({ 
+                            title: "CLIENTS",
+                            isMoney: false,
+                            count,
+                            icon: (
+                                <PermIdentity className="icon"/>
+                            ),
+                            link: "See all clients",
+                            linkto: "/clients"
+                         })
+                        break;
+                    case "complaints":
+                        count = await complaintsService.getComplaintsCount()
+                        setData({
+                            title: "COMPLAINTS",
+                            isMoney: false,
+                            count,
+                            icon: (
+                                <ListIcon className="icon"/>
+                            ),
+                            link: "See all complaints",
+                            linkto: "/complaints"
+                        })
+                        break;
+                    case "enquiries":
+                        count = await enquiriesService.getEnquiriesCount()
+                        setData({
+                            title: "Enquiries",
+                            isMoney: false,
+                            count,
+                            icon: (
+                                <DynamicFormIcon className="icon"/>
+                            ),
+                            link: "See all enquiries",
+                            linkto: "/enquiries"
+                        })
+                        break;
+                    default:
+                        break;
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error)
+            }
+        }
+        fetchData()
+    }, [type])
 
-
-
-    
-
-    switch(type) {
-        case "Clients":
-            data = {
-                title: "Clients",
-                icon: (
-                    <PermIdentity 
-                    style= {
-                        { 
-                            color: "#ff74b1", 
-                            backgroundColor: "#ffd6ec" 
-                        }
-                    } 
-                    className = "icon"
-                    />
-                ),
-                link: "See all clients",
-                linkto: "/clients",
-                count: totalCount,
-            };
-            break;
-        case "Complaints":
-            data = {
-                title: "Complaints",
-                icon: (
-                    <NewReleases 
-                    style = {
-                        {
-                            color: "#AC7088",
-                            backgroundColor: "#FFF38C"
-                        }
-                    }
-                    className= "icon"
-                    />
-                ),
-                link: "See all complaints",
-                linkto: "/complaints",
-                count: totalCount,
-            };
-            break;
-        case "Enquiries":
-            data = {
-                title: "Enquiries",
-                icon: (
-                    <ContactSupport
-                    style = {
-                        {
-                            color: "#367E18",
-                            backgroundColor: "#A7FFE4"
-                        }
-                    } 
-                    className= "icon"
-                    />
-                ),
-                link: "See all enquiries",
-                linkto: "/enquiries",
-                count: totalCount
-            };
-            break;
-        default:
-            break;
-    }
+    if(!data) return null
 
     return (
         <div className="databox">
@@ -89,6 +82,7 @@ const Databox = ({ type, totalCount }) => {
                 </span>
             </div>
             <div className="counts">
+                {data.isMoney && <NewReleases />}
                 {data.count}
             </div>
             <div className="see-item">

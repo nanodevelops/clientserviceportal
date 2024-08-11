@@ -7,6 +7,15 @@ clientsRouter.get("/", async(request, response) => {
     response.json(clients.map((client) => client.toJSON()))
 })
 
+clientsRouter.get("/count", async(request, response) => {
+    try {
+        const clientCount = await Client.countDocuments({});
+        response.json({ count: clientCount })
+    } catch (error) {
+        response.status(500).json({ error: "Error fetching clients count" })
+    }
+})
+
 clientsRouter.get("/:id", async(request, response) => {
     const client = await Client
         .findById(request.params.id)

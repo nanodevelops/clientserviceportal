@@ -1,6 +1,83 @@
 @import "../../sass//fonts.scss";
 @import "../../sass/colors.scss";
+@import "~bootstrap/scss/bootstrap";
 
-.main-nav {
-    display: flex;
+
+nav.navbar {
+    background-color: $color-green;
+
+    .navbar-brand {
+        display: inline-block;
+
+        img.rounded-pill {
+            width: auto;
+            height: 40px;
+            @include transition(all 0.3 ease);
+
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+    .nav-item {
+        margin-right: 1.5rem;
+        
+        .nav-link {
+            color: $color-white;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05rem;
+            @include transition(color 0.3s ease);
+
+            &:hover {
+                color: $color-yellow;
+            }
+            &.dropdown-toggle::after {
+                margin-left: 0.5rem;
+                @include transition(transform 0.3s ease);
+            }
+            &.dropdown-toggle[aria-expanded="true"]::after {
+                transform: rotate(-90deg);
+            }
+        }
+        
+        .dropdown-menu {
+            background-color: $color-green;
+            border: none;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            border-radius: 0.25rem;
+            padding: 0.5rem 0;
+            // opacity: 0;
+            // visibility: hidden;
+            // transform: translateY(-10px);
+            // transition: all 0.3s ease;
+
+            .dropdown-item {
+                // color: $color-green;
+                // font-size: 0.9rem;
+                // text-transform: uppercase;
+                letter-spacing: 0.05rem;
+                padding: 0.5rem 1rem;
+                // transition: background-color 0.3s ease, color 0.3s ease;
+
+                // &:hover {
+                //     background-color: $color-green;
+                //     color: $color-white;
+                // }
+            }
+        }
+        // .nav-item:hover .dropdown-menu,
+        // .nav-item.show .dropdown-menu {
+        //     opacity: 1;
+        //     visibility: visible;
+        //     transform: translateY(0);
+        //     display: block;
+        // }
+        // .show > .dropdown-menu {
+        //     opacity: 1;
+        //     visibility: visible;
+        //     transform: translateY(0);
+        // }
+    }
 }
