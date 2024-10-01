@@ -18,7 +18,7 @@ const Complaints = () => {
     return(
         <div>
             <div className="container container-fluid">
-                {complaints && <Complaint complaints={complaints}/>}
+                {complaints && <Complaint complaints={complaints} />}
             </div>
         </div>
     )

@@ -1,20 +1,20 @@
-# fly.toml app configuration file generated for clientister on 2024-06-19T19:38:04Z
+# fly.toml app configuration file generated for njsma-clientportal on 2024-08-29T11:51:17Z
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'clientister'
-primary_region = 'lhr'
+app = 'njsma-clientportal'
+primary_region = 'ams'
 
 [build]
 
 [env]
-  PORT = "3000" # add this
+  PORT = "3001"
 
 [http_service]
-  internal_port = 3000
+  internal_port = 3001
   force_https = true
-  auto_stop_machines = true
+  auto_stop_machines = 'stop'
   auto_start_machines = true
   min_machines_running = 0
   processes = ['app']

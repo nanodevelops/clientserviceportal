@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import clientsService from "../../services/clients";
 import Client from "../../components/Client/Client";
-import PageTitle from "../../components/PageTitle/PageTitle";
 
 const Clients = () => {
     const [clients, setClients] = useState([]);
@@ -17,7 +16,6 @@ const Clients = () => {
     }, [setClients])
     return ( 
         <div>
-            <PageTitle title="Clients"/>
             <div className="container container-fluid">
                 {clients && <Client clients={clients} />}
             </div>

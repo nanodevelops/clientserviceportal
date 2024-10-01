@@ -9,7 +9,7 @@ const Home = () => {
     return(
         <div className="homepage">
             <Navbar />
-            <div class="container-fluid" id="home-content">
+            <div className="container-fluid" id="home-content">
                 <div className="row">
                     <div className="col-md-3">
                         <Sidebar />
@@ -26,6 +26,9 @@ const Home = () => {
                             <div className="col-md-4">
                                 <Databox type="enquiries"/>
                             </div>
+                        </div>
+                        <div className="chart-contanier">
+                            
                         </div>
                         <div className="clients-table">
                             <p className="title">Latest additions</p>

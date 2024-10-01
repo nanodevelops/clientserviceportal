@@ -30,7 +30,20 @@
                         display: none;
                     }
                 }
+                
+                    // .row.home-cards.mb-4 {
+                    //     display: grid;
+                    //     grid-template-columns: 31% 31% 31%;
+                    //     gap: 20px;
+                    // }
             }
         }
     }
 }
+// @media screen and (max-width: 767px) {
+//     .row.home-cards.mb-4 {
+//         display: grid;
+//         grid-template-columns: 48% 48%;
+//         gap: 20px;
+//     }
+// }

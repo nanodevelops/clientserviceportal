@@ -10,6 +10,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import React, { useContext, useState } from "react";
 
+
 import "./Navbar.scss";
 import logo from "../../assets/logo.png";
 import admin from "../../assets/user/admin-user.png";
@@ -133,12 +134,22 @@ const Navbar = () => {
         <nav className="navbar navbar-expand-lg sticky-top">
             <div className="container-fluid">
                 <Link className="navbar-brand" to="/">
-                    <img src={logo} alt="logo" width="13.333%" className="rounded-pill"/>
+                    <img src={logo} alt="logo" className="rounded-pill"/>
                 </Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                <button className="navbar-toggler d-flex d-lg-none flex-column justify-content-around" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="toggler-icon top-bar"></span>
+                    <span className="toggler-icon middle-bar"></span>
+                    <span className="toggler-icon bottom-bar"></span>
                 </button>
                 <div className={`collapse navbar-collapse ${toggle ? "show" : ""}`} id="navbarSupportedContent">
+                <div className="nav-item">
+                    <form action="" className="d-flex">
+                        <input type="search" className="form-control me-2" placeholder="Search" aria-label="Search"/>
+                        <button className="btn btn-outline-success" type="submit">
+                            <SearchIcon />
+                        </button>
+                    </form>
+                </div>
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         {renderMenu(navbarMenu)}
                     </ul>
@@ -159,14 +170,7 @@ const Navbar = () => {
                                 />
                             )}
                         </div>
-                        <div className="nav-item">
-                            <form action="" className="d-flex">
-                                <input type="search" className="form-control me-2" placeholder="Search" aria-label="Search"/>
-                                <button className="btn btn-outline-success" type="submit">
-                                    <SearchIcon />
-                                </button>
-                            </form>
-                        </div>
+
                     </div>
                 </div>
             </div>
